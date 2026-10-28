@@ -2,6 +2,7 @@ use super::*;
 
 const B: [f64; 4] = [10.0, 20.0, 110.0, 70.0];
 
+/// Refused splits preserve a mesh at the 64-patch limit while the other axis stays editable.
 #[test]
 fn splitting_at_the_grid_limit_preserves_a_valid_mesh() {
     for (cols, rows) in [(64, 2), (2, 64), (64, 64)] {
@@ -28,6 +29,7 @@ fn splitting_at_the_grid_limit_preserves_a_valid_mesh() {
     }
 }
 
+/// Splitting from 63 to 64 patches preserves the surface, and removing a split frees capacity.
 #[test]
 fn splitting_to_the_grid_limit_and_removing_a_split_still_work() {
     let mut mesh = BezierMesh::identity(B, 63, 63);
